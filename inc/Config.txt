@@ -1,0 +1,1 @@
+{"cities":["Moscow","Saint Petersburg","Rostov"],"days":4,"frequency":60,"Weather":"true","Temperature":"true","Wind":"true","Precipitation":"true","Surface_pressure":"true"}
