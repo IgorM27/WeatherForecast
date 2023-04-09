@@ -92,7 +92,7 @@ WeatherForecast::UpdateCityInfo(const std::string& city, std::vector<print_block
     std::string weather_url = "https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude
                               + "&hourly=temperature_2m," + "relativehumidity_2m," + "precipitation_probability,"
                               + "precipitation," + "weathercode," + "surface_pressure," + "windspeed_10m," +
-                              "winddirection_10m";
+                              "winddirection_10m"+"&forecast_days=10";
     cpr::Response weather = cpr::Get(cpr::Url{weather_url});
 
     nlohmann::json json_whether = nlohmann::json::parse(weather.text);
@@ -320,7 +320,7 @@ void WeatherForecast::PreviousCity(bool problem) {
 }
 
 void WeatherForecast::AddDay(bool problem) {
-    if (number_days != 7) {
+    if (number_days != 10) {
         number_days++;
     }
     system("cls");

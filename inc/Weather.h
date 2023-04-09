@@ -47,8 +47,8 @@ public:
         std::filesystem::path config_path = "Config.txt";
         std::ifstream input(config_path, std::ios::binary);
         config = nlohmann::json::parse(input);
-        if (config["days"] >= 7) {
-            number_days = 7;
+        if (config["days"] >= 10) {
+            number_days = 10;
         } else if (config["days"] >= 1) {
             number_days = config["days"];
         }
