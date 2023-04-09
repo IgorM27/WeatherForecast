@@ -95,4 +95,6 @@ public:
 
     void RemoveWeatherParameter();
 
+    void AddCity();
+
 };

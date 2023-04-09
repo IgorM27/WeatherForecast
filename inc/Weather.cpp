@@ -92,7 +92,7 @@ WeatherForecast::UpdateCityInfo(const std::string& city, std::vector<print_block
     std::string weather_url = "https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude
                               + "&hourly=temperature_2m," + "relativehumidity_2m," + "precipitation_probability,"
                               + "precipitation," + "weathercode," + "surface_pressure," + "windspeed_10m," +
-                              "winddirection_10m"+"&forecast_days=10";
+                              "winddirection_10m" + "&forecast_days=10";
     cpr::Response weather = cpr::Get(cpr::Url{weather_url});
 
     nlohmann::json json_whether = nlohmann::json::parse(weather.text);
@@ -294,11 +294,10 @@ void WeatherForecast::UpdateInfo() {
         std::string tmp_city = i;
         std::vector<print_block> tmp;
         tmp_cities.push_back(UpdateCityInfo(tmp_city, tmp));
+        tmp_print_cities.push_back(tmp);
     }
-    if (tmp_cities.size() == config["cities"].size() && tmp_print_cities.size() == config["cities"].size()) {
-        cities = tmp_cities;
-        print_cities = tmp_print_cities;
-    }
+    cities = tmp_cities;
+    print_cities = tmp_print_cities;
 }
 
 void WeatherForecast::NextCity(bool problem) {
@@ -437,13 +436,17 @@ void WeatherForecast::Settings(bool problem) {
         system("cls");
         std::cout << "Settings:" << '\n' << "Please press the button:" << '\n'
                   << "1 if you want to add a weather parameter" << '\n'
-                  << "2 if you want to remove the weather parameter" << '\n' << "To return, press <" << '\n';
+                  << "2 if you want to remove the weather parameter" << '\n'
+                  << "3 if you want to add a city to the weather forecast" << '\n' << "To return, press <" << '\n';
         int command = getch();
         if (command == 49) {
             AddWeatherParameter();
         }
         if (command == 50) {
             RemoveWeatherParameter();
+        }
+        if (command == 51) {
+            AddCity();
         }
         if (command == 60) {
             system("cls");
@@ -454,7 +457,6 @@ void WeatherForecast::Settings(bool problem) {
             break;
         }
     }
-
 
 }
 
@@ -509,6 +511,35 @@ void WeatherForecast::RemoveWeatherParameter() {
         }
         if (command == 60) {
             break;
+        }
+    }
+}
+
+void WeatherForecast::AddCity() {
+    bool problem = false;
+    while (true) {
+        system("cls");
+        if (problem) {
+            std::cout << "Please check the correctness of the city name or try again later" << '\n';
+        }
+        std::cout << "To add a city to the weather forecast, enter its name: " << '\n';
+        for (auto& i: config["cities"]) {
+            std::cout << i << '\n';
+        }
+        std::cout << "To return, enter <" << '\n';
+        std::string city;
+        std::cin >> city;
+        if (city == "<") {
+            break;
+        } else {
+            config["cities"].push_back(city);
+            try {
+                UpdateInfo();
+                problem = false;
+            } catch (...) {
+                config["cities"].erase(config["cities"].begin() + (config["cities"].size() - 1));
+                problem = true;
+            }
         }
     }
 }
