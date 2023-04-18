@@ -1,7 +1,7 @@
 #include "Weather.h"
 
 
-std::vector<std::string> Picture1 = {
+const std::vector<std::string> Picture1 = {
         "                ",
         "      .--.      ",
         "   .-(    ).    ",
@@ -9,7 +9,7 @@ std::vector<std::string> Picture1 = {
         "                ",
 };
 
-std::vector<std::string> Picture2 = {
+const std::vector<std::string> Picture2 = {
         "     \\__|__/    ",
         "     (     )    ",
         "   -(       )-  ",
@@ -17,7 +17,7 @@ std::vector<std::string> Picture2 = {
         "     /  |  \\    ",
 };
 
-std::vector<std::string> Picture3 = {
+const std::vector<std::string> Picture3 = {
         "      .-.       ",
         "     (   ).     ",
         "    (___(__)    ",
@@ -25,7 +25,7 @@ std::vector<std::string> Picture3 = {
         "   * * * *      ",
 };
 
-std::vector<std::string> Picture4 = {
+const std::vector<std::string> Picture4 = {
         "                ",
         "  -_-_-_-_-_    ",
         "  _-_-_-_-_-    ",
@@ -33,14 +33,14 @@ std::vector<std::string> Picture4 = {
         "                ",
 };
 
-std::vector<std::string> Picture5 = {
+const std::vector<std::string> Picture5 = {
         "      .-.       ",
         "     (   ).     ",
         "    (___(__)    ",
         "    *   *       ",
         "   *   *        ",
 };
-std::vector<std::string> Picture6 = {
+const std::vector<std::string> Picture6 = {
         "      .-.       ",
         "     (   ).     ",
         "    (___(__)    ",
@@ -48,7 +48,7 @@ std::vector<std::string> Picture6 = {
         "   / / / /      ",
 };
 
-std::vector<std::string> Picture7 = {
+const std::vector<std::string> Picture7 = {
         "      .-.       ",
         "     (   ).     ",
         "    (___(__)    ",
@@ -56,7 +56,7 @@ std::vector<std::string> Picture7 = {
         "     /   /      ",
 };
 
-std::vector<std::string> Picture8 = {
+const std::vector<std::string> Picture8 = {
         "      .-.       ",
         "     (   ).     ",
         "    (___(__)    ",
